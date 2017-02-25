@@ -40,7 +40,7 @@ def main():
         readFile(file, header, data)
         for i, h in enumerate(header):
             if h == 'A' or h == 'B':
-                distinctParamteres = {"NA": 0}
+                distinctParamteres = {"NA": 0, "": 0, "Unknown": 0}
                 num = 1
                 for p in data[i]:
                     if p not in distinctParamteres:

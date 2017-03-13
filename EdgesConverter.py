@@ -42,7 +42,7 @@ def main():
         distinctEdges = {}
         for i in range(len(data[0])):
             if data[0][i] != data[1][i]:
-                if data[0][i] + " " + data[1][i] not in distinctEdges and data[1][i] + " " + data[0][i] not in distinctEdges:
+                if data[0][i] + " " + data[1][i] not in distinctEdges:
                     distinctEdges[data[0][i] + " " + data[1][i]] = 1
                     newData[0].append(data[0][i])
                     newData[1].append(data[1][i])

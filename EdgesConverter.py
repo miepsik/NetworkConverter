@@ -38,27 +38,15 @@ def main():
         header = []
         data = []
         readFile(file, header, data)
-        for i, h in enumerate(header):
-            if h == 'A' or h == 'B':
-                distinctParamteres = {"NA": 0, "": 0, "Unknown": 0, "NaN": 0}
-                num = 1
-                for p in data[i]:
-                    if p not in distinctParamteres:
-                        distinctParamteres[p] = num
-                        num += 1
-                for j in range(len(data[i])):
-                    data[i][j] = distinctParamteres[data[i][j]]
-            if h == 'X' or h == 'Y':
-                for j in range(len(data[i])):
-                    data[i][j] = float(data[i][j])
-                down = min(data[i])
-                up = max(data[i])
-                for j in range(len(data[i])):
-                    data[i][j] -= down
-                    data[i][j] /= (up-down)
-                    data[i][j] *= 999
-                    data[i][j] += 1
-        saveFile(header, data, file)
+        newData = [[], []]
+        distinctEdges = {}
+        for i in range(len(data[0])):
+            if data[0][i] != data[1][i]:
+                if data[0][i] + " " + data[1][i] not in distinctEdges and data[1][i] + " " + data[0][i] not in distinctEdges:
+                    distinctEdges[data[0][i] + " " + data[1][i]] = 1
+                    newData[0].append(data[0][i])
+                    newData[1].append(data[1][i])
+        saveFile(header, newData, file)
 
 
 if __name__ == '__main__':

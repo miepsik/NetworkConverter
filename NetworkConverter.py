@@ -7,8 +7,10 @@ def readFile(file, header, data):
         line = f.readline()
         if line.find(";") != -1:
             delimiter = ";"
-        else:
+        elif line.find(","):
             delimiter = ","
+        else:
+            delimiter = " "
         f.seek(0)
         reader = csv.reader(f, delimiter=delimiter)
         h = True
